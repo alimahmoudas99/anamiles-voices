@@ -56,13 +56,13 @@ export const ANIMALS: Animal[] = [
     emoji: '🐏',
     color: '#9a8f8f',
     lightColor: '#E8E0E0',
-    sound: require('../assets/voices/ElevenLabs_Sheep_calling_to_each_other,_echoing_in_the_hills.mp3'),
+    sound: require('../assets/voices/elevenlabs_sheep.mp3'),
   },
 
   // ── 50 حيوان إضافي (sound = null، أضف الأصوات لاحقًا) ──
   { id: 'lion',       nameAr: 'أسد',       nameEn: 'Lion',       emoji: '🦁', color: '#E67E22', lightColor: '#FAD7A0', sound: require('../assets/voices/mixkit-wild-lion-animal-roar-6.wav') },
-  { id: 'tiger',      nameAr: 'نمر',       nameEn: 'Tiger',      emoji: '🐯', color: '#F39C12', lightColor: '#FCE4B6', sound: require('../assets/voices/ElevenLabs_A_fierce,_low_snarl_from_a_protective_tiger,_rich_in_intensity.mp3') },
-  { id: 'elephant',   nameAr: 'فيل',       nameEn: 'Elephant',   emoji: '🐘', color: '#95A5A6', lightColor: '#D7DBDD', sound: require('../assets/voices/ElevenLabs_Elephant_trumpeting__A_loud,_resonant_call_echoing_through_the_jungle.mp3') },
+  { id: 'tiger',      nameAr: 'نمر',       nameEn: 'Tiger',      emoji: '🐯', color: '#F39C12', lightColor: '#FCE4B6', sound: require('../assets/voices/elevenlabs_tiger.mp3') },
+  { id: 'elephant',   nameAr: 'فيل',       nameEn: 'Elephant',   emoji: '🐘', color: '#95A5A6', lightColor: '#D7DBDD', sound: require('../assets/voices/elevenlabs_elephant.mp3') },
   { id: 'monkey',     nameAr: 'قرد',       nameEn: 'Monkey',     emoji: '🐵', color: '#A0522D', lightColor: '#E8C9B0', sound: require('../assets/voices/mixkit-cartoon-monkey-mocking-and-giggling-108.wav') },
   { id: 'horse',      nameAr: 'حصان',      nameEn: 'Horse',      emoji: '🐴', color: '#8B4513', lightColor: '#D7B89C', sound: require('../assets/voices/mixkit-scared-horse-neighing-85.wav') },
   { id: 'pig',        nameAr: 'خنزير',     nameEn: 'Pig',        emoji: '🐷', color: '#F8C8DC', lightColor: '#FCE4EC', sound: require('../assets/voices/mixkit-pig-grunting-3.wav') },
