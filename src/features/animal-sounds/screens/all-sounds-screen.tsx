@@ -1,21 +1,24 @@
-import { AnimalGridCard } from '@/components/animal/animal-grid-card';
-import { getPlayableAnimals } from '@/constants/animals';
-import { Animal } from '@/types/animal';
+import { AnimalGridCard } from '@/src/features/animal-sounds/components/animal-grid-card';
+import { getPlayableAnimals } from '@/src/core/constants/animals';
+import { Animal } from '@/src/types/animal';
 import React from 'react';
 import { Platform, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { useLanguage } from '@/src/core/contexts/LanguageContext';
 
 interface Props {
   playAnimalSound: (animal: Animal) => Promise<void>;
 }
 
 export const AllSoundsScreen: React.FC<Props> = ({ playAnimalSound }) => {
+  const { t, isRTL } = useLanguage();
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.title}>🔊 جميع الأصوات</Text>
-        <Text style={styles.subtitle}>اضغط على أي حيوان لتسمع صوته!</Text>
+        <Text style={styles.title}>{t('allTitle')}</Text>
+        <Text style={styles.subtitle}>{t('allSubtitle')}</Text>
       </View>
-      <ScrollView contentContainerStyle={styles.grid} showsVerticalScrollIndicator={false}>
+      <ScrollView contentContainerStyle={[styles.grid, { flexDirection: isRTL ? 'row-reverse' : 'row' }]} showsVerticalScrollIndicator={false}>
         {getPlayableAnimals().map((animal) => (
           <AnimalGridCard key={animal.id} animal={animal} onPress={playAnimalSound} />
         ))}

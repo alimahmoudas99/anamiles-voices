@@ -1,6 +1,7 @@
-import { Animal } from '@/types/animal';
+import { Animal } from '@/src/types/animal';
 import React, { useEffect, useRef } from 'react';
 import { Animated, Dimensions, StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { useLanguage } from '@/src/core/contexts/LanguageContext';
 
 const { width } = Dimensions.get('window');
 
@@ -13,6 +14,7 @@ interface ChoiceCardProps {
 }
 
 export const ChoiceCard: React.FC<ChoiceCardProps> = ({ animal, onPress, state }) => {
+  const { locale } = useLanguage();
   const scaleAnim = useRef(new Animated.Value(1)).current;
   const shakeAnim = useRef(new Animated.Value(0)).current;
 
@@ -43,6 +45,8 @@ export const ChoiceCard: React.FC<ChoiceCardProps> = ({ animal, onPress, state }
   const cardBg =
     state === 'correct' ? '#2ECC71' : state === 'wrong' ? '#E74C3C' : '#FFFFFF';
 
+  const animalName = locale === 'ar' ? animal.nameAr : animal.nameEn;
+
   return (
     <TouchableOpacity
       activeOpacity={1}
@@ -62,7 +66,7 @@ export const ChoiceCard: React.FC<ChoiceCardProps> = ({ animal, onPress, state }
       >
         <Text style={styles.choiceEmoji}>{animal.emoji}</Text>
         <Text style={[styles.choiceName, { color: state !== 'idle' ? '#FFFFFF' : '#333' }]}>
-          {animal.nameAr}
+          {animalName}
         </Text>
       </Animated.View>
     </TouchableOpacity>

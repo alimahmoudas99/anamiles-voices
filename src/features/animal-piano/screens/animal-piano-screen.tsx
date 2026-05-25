@@ -1,37 +1,40 @@
-import { PianoKey } from '@/components/animal/piano-key';
-import { getPlayableAnimals } from '@/constants/animals';
-import { Animal } from '@/types/animal';
+import { PianoKey } from '@/src/features/animal-piano/components/piano-key';
+import { getPlayableAnimals } from '@/src/core/constants/animals';
+import { Animal } from '@/src/types/animal';
 import React from 'react';
 import { Platform, StyleSheet, Text, View } from 'react-native';
+import { useLanguage } from '@/src/core/contexts/LanguageContext';
 
 interface Props {
   playAnimalSound: (animal: Animal) => Promise<void>;
 }
 
 export const AnimalPianoScreen: React.FC<Props> = ({ playAnimalSound }) => {
+  const { t, isRTL } = useLanguage();
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.title}>🎹 بيانو الحيوانات</Text>
-        <Text style={styles.subtitle}>اضغط على الحيوان واسمع صوته!</Text>
+        <Text style={styles.title}>{t('pianoTitle')}</Text>
+        <Text style={styles.subtitle}>{t('pianoSubtitle')}</Text>
       </View>
-
-      <View style={styles.notesRow}>
+ 
+      <View style={[styles.notesRow, { flexDirection: isRTL ? 'row-reverse' : 'row' }]}>
         {['🎵', '🎶', '🎵', '🎶'].map((n, i) => (
           <Text key={i} style={[styles.musicNote, { opacity: 0.3 + i * 0.15 }]}>
             {n}
           </Text>
         ))}
       </View>
-
+ 
       {/* أول 4 حيوانات فقط في الرئيسية */}
-      <View style={styles.keysContainer}>
+      <View style={[styles.keysContainer, { flexDirection: isRTL ? 'row-reverse' : 'row' }]}>
         {getPlayableAnimals().slice(0, 4).map((animal) => (
           <PianoKey key={animal.id} animal={animal} onPress={playAnimalSound} />
         ))}
       </View>
-
-      <Text style={styles.hint}>👆 العب وتعلم أصوات الحيوانات!</Text>
+ 
+      <Text style={styles.hint}>{t('pianoHint')}</Text>
     </View>
   );
 };

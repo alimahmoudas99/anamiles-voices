@@ -1,4 +1,4 @@
-import { Animal } from '@/types/animal';
+import { Animal } from '@/src/types/animal';
 
 export const getPlayableAnimals = (): Animal[] => ANIMALS.filter((a) => !!a.sound);
 
@@ -11,7 +11,7 @@ export const ANIMALS: Animal[] = [
     emoji: '🐱',
     color: '#FF6B6B',
     lightColor: '#FFD6D6',
-    sound: require('../assets/voices/mixkit-sweet-kitty-meow-93.wav'),
+    sound: require('../../../assets/voices/mixkit-sweet-kitty-meow-93.wav'),
   },
   {
     id: 'dog',
@@ -20,7 +20,7 @@ export const ANIMALS: Animal[] = [
     emoji: '🐶',
     color: '#FF9F43',
     lightColor: '#FFE8CC',
-    sound: require('../assets/voices/mixkit-dog-barking-twice-1.wav'),
+    sound: require('../../../assets/voices/mixkit-dog-barking-twice-1.wav'),
   },
   {
     id: 'cow',
@@ -29,7 +29,7 @@ export const ANIMALS: Animal[] = [
     emoji: '🐮',
     color: '#54A0FF',
     lightColor: '#CCDEFF',
-    sound: require('../assets/voices/mixkit-cow-moo-in-the-barn-1751.wav'),
+    sound: require('../../../assets/voices/mixkit-cow-moo-in-the-barn-1751.wav'),
   },
   {
     id: 'bird',
@@ -38,7 +38,7 @@ export const ANIMALS: Animal[] = [
     emoji: '🐦',
     color: '#1DD1A1',
     lightColor: '#C0F5E8',
-    sound: require('../assets/voices/mixkit-forest-birds-singing-1212.wav'),
+    sound: require('../../../assets/voices/mixkit-forest-birds-singing-1212.wav'),
   },
   {
     id: 'rooster',
@@ -47,7 +47,7 @@ export const ANIMALS: Animal[] = [
     emoji: '🐓',
     color: '#d1d11d',
     lightColor: '#FFF9C4',
-    sound: require('../assets/voices/mixkit-rooster-crowing-in-the-morning-2462.wav'),
+    sound: require('../../../assets/voices/mixkit-rooster-crowing-in-the-morning-2462.wav'),
   },
   {
     id: 'sheep',
@@ -56,25 +56,25 @@ export const ANIMALS: Animal[] = [
     emoji: '🐏',
     color: '#9a8f8f',
     lightColor: '#E8E0E0',
-    sound: require('../assets/voices/elevenlabs_sheep.mp3'),
+    sound: require('../../../assets/voices/elevenlabs_sheep.mp3'),
   },
 
   // ── 50 حيوان إضافي (sound = null، أضف الأصوات لاحقًا) ──
-  { id: 'lion',       nameAr: 'أسد',       nameEn: 'Lion',       emoji: '🦁', color: '#E67E22', lightColor: '#FAD7A0', sound: require('../assets/voices/mixkit-wild-lion-animal-roar-6.wav') },
-  { id: 'tiger',      nameAr: 'نمر',       nameEn: 'Tiger',      emoji: '🐯', color: '#F39C12', lightColor: '#FCE4B6', sound: require('../assets/voices/elevenlabs_tiger.mp3') },
-  { id: 'elephant',   nameAr: 'فيل',       nameEn: 'Elephant',   emoji: '🐘', color: '#95A5A6', lightColor: '#D7DBDD', sound: require('../assets/voices/elevenlabs_elephant.mp3') },
-  { id: 'monkey',     nameAr: 'قرد',       nameEn: 'Monkey',     emoji: '🐵', color: '#A0522D', lightColor: '#E8C9B0', sound: require('../assets/voices/mixkit-cartoon-monkey-mocking-and-giggling-108.wav') },
-  { id: 'horse',      nameAr: 'حصان',      nameEn: 'Horse',      emoji: '🐴', color: '#8B4513', lightColor: '#D7B89C', sound: require('../assets/voices/mixkit-scared-horse-neighing-85.wav') },
-  { id: 'pig',        nameAr: 'خنزير',     nameEn: 'Pig',        emoji: '🐷', color: '#F8C8DC', lightColor: '#FCE4EC', sound: require('../assets/voices/mixkit-pig-grunting-3.wav') },
-  { id: 'goat',       nameAr: 'ماعز',      nameEn: 'Goat',       emoji: '🐐', color: '#B0A18F', lightColor: '#E5DED2', sound: require('../assets/voices/mixkit-farm-goat-baa-1763.wav') },
-  { id: 'duck',       nameAr: 'بطة',       nameEn: 'Duck',       emoji: '🦆', color: '#F1C40F', lightColor: '#FCF3CF', sound: require('../assets/voices/duck.mp3') },
-  { id: 'chicken',    nameAr: 'دجاجة',     nameEn: 'Chicken',    emoji: '🐔', color: '#E74C3C', lightColor: '#FADBD8', sound: require('../assets/voices/chicken.wav') },
-  { id: 'chick',      nameAr: 'كتكوت',     nameEn: 'Chick',      emoji: '🐤', color: '#FFEB3B', lightColor: '#FFF9C4', sound: require('../assets/voices/chick.mp3') },
-  { id: 'rabbit',     nameAr: 'أرنب',      nameEn: 'Rabbit',     emoji: '🐰', color: '#ECF0F1', lightColor: '#F8F9F9', sound: require('../assets/voices/rabbit.mp3') },
-  { id: 'mouse',      nameAr: 'فأر',       nameEn: 'Mouse',      emoji: '🐭', color: '#BDC3C7', lightColor: '#EAEDED', sound: require('../assets/voices/mouse.mp3') },
-  { id: 'frog',       nameAr: 'ضفدع',      nameEn: 'Frog',       emoji: '🐸', color: '#27AE60', lightColor: '#ABEBC6', sound: require('../assets/voices/frog.mp3') },
-  { id: 'eagle',      nameAr: 'نسر',       nameEn: 'Eagle',      emoji: '🦅', color: '#5D4037', lightColor: '#D7CCC8', sound: require('../assets/voices/eagle.mp3') },
-  { id: 'swan',       nameAr: 'بجعة',      nameEn: 'Swan',       emoji: '🦢', color: '#FDFEFE', lightColor: '#F4F6F6', sound: require('../assets/voices/swan.mp3') },
+  { id: 'lion',       nameAr: 'أسد',       nameEn: 'Lion',       emoji: '🦁', color: '#E67E22', lightColor: '#FAD7A0', sound: require('../../../assets/voices/mixkit-wild-lion-animal-roar-6.wav') },
+  { id: 'tiger',      nameAr: 'نمر',       nameEn: 'Tiger',      emoji: '🐯', color: '#F39C12', lightColor: '#FCE4B6', sound: require('../../../assets/voices/elevenlabs_tiger.mp3') },
+  { id: 'elephant',   nameAr: 'فيل',       nameEn: 'Elephant',   emoji: '🐘', color: '#95A5A6', lightColor: '#D7DBDD', sound: require('../../../assets/voices/elevenlabs_elephant.mp3') },
+  { id: 'monkey',     nameAr: 'قرد',       nameEn: 'Monkey',     emoji: '🐵', color: '#A0522D', lightColor: '#E8C9B0', sound: require('../../../assets/voices/mixkit-cartoon-monkey-mocking-and-giggling-108.wav') },
+  { id: 'horse',      nameAr: 'حصان',      nameEn: 'Horse',      emoji: '🐴', color: '#8B4513', lightColor: '#D7B89C', sound: require('../../../assets/voices/mixkit-scared-horse-neighing-85.wav') },
+  { id: 'pig',        nameAr: 'خنزير',     nameEn: 'Pig',        emoji: '🐷', color: '#F8C8DC', lightColor: '#FCE4EC', sound: require('../../../assets/voices/mixkit-pig-grunting-3.wav') },
+  { id: 'goat',       nameAr: 'ماعز',      nameEn: 'Goat',       emoji: '🐐', color: '#B0A18F', lightColor: '#E5DED2', sound: require('../../../assets/voices/mixkit-farm-goat-baa-1763.wav') },
+  { id: 'duck',       nameAr: 'بطة',       nameEn: 'Duck',       emoji: '🦆', color: '#F1C40F', lightColor: '#FCF3CF', sound: require('../../../assets/voices/duck.mp3') },
+  { id: 'chicken',    nameAr: 'دجاجة',     nameEn: 'Chicken',    emoji: '🐔', color: '#E74C3C', lightColor: '#FADBD8', sound: require('../../../assets/voices/chicken.wav') },
+  { id: 'chick',      nameAr: 'كتكوت',     nameEn: 'Chick',      emoji: '🐤', color: '#FFEB3B', lightColor: '#FFF9C4', sound: require('../../../assets/voices/chick.mp3') },
+  { id: 'rabbit',     nameAr: 'أرنب',      nameEn: 'Rabbit',     emoji: '🐰', color: '#ECF0F1', lightColor: '#F8F9F9', sound: require('../../../assets/voices/rabbit.mp3') },
+  { id: 'mouse',      nameAr: 'فأر',       nameEn: 'Mouse',      emoji: '🐭', color: '#BDC3C7', lightColor: '#EAEDED', sound: require('../../../assets/voices/mouse.mp3') },
+  { id: 'frog',       nameAr: 'ضفدع',      nameEn: 'Frog',       emoji: '🐸', color: '#27AE60', lightColor: '#ABEBC6', sound: require('../../../assets/voices/frog.mp3') },
+  { id: 'eagle',      nameAr: 'نسر',       nameEn: 'Eagle',      emoji: '🦅', color: '#5D4037', lightColor: '#D7CCC8', sound: require('../../../assets/voices/eagle.mp3') },
+  { id: 'swan',       nameAr: 'بجعة',      nameEn: 'Swan',       emoji: '🦢', color: '#FDFEFE', lightColor: '#F4F6F6', sound: require('../../../assets/voices/swan.mp3') },
   { id: 'owl',        nameAr: 'بومة',      nameEn: 'Owl',        emoji: '🦉', color: '#6E2C00', lightColor: '#D5C2B3', sound: null },
   { id: 'parrot',     nameAr: 'ببغاء',     nameEn: 'Parrot',     emoji: '🦜', color: '#16A085', lightColor: '#A3E4D7', sound: null },
   { id: 'penguin',    nameAr: 'بطريق',     nameEn: 'Penguin',    emoji: '🐧', color: '#2C3E50', lightColor: '#AEB6BF', sound: null },

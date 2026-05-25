@@ -1,6 +1,7 @@
-import { Animal } from '@/types/animal';
+import { Animal } from '@/src/types/animal';
 import React, { useRef } from 'react';
 import { Animated, Dimensions, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { useLanguage } from '@/src/core/contexts/LanguageContext';
 
 const { width } = Dimensions.get('window');
 
@@ -10,6 +11,7 @@ interface AnimalGridCardProps {
 }
 
 export const AnimalGridCard: React.FC<AnimalGridCardProps> = ({ animal, onPress }) => {
+  const { locale } = useLanguage();
   const scaleAnim = useRef(new Animated.Value(1)).current;
 
   const handlePressIn = () => {
@@ -19,6 +21,8 @@ export const AnimalGridCard: React.FC<AnimalGridCardProps> = ({ animal, onPress 
     Animated.spring(scaleAnim, { toValue: 1, useNativeDriver: true, speed: 30 }).start();
     onPress(animal);
   };
+
+  const animalName = locale === 'ar' ? animal.nameAr : animal.nameEn;
 
   return (
     <TouchableOpacity
@@ -38,7 +42,7 @@ export const AnimalGridCard: React.FC<AnimalGridCardProps> = ({ animal, onPress 
         ]}
       >
         <Text style={styles.emoji}>{animal.emoji}</Text>
-        <Text style={styles.name}>{animal.nameAr}</Text>
+        <Text style={styles.name}>{animalName}</Text>
         <View style={[styles.stripe, { backgroundColor: animal.lightColor }]} />
       </Animated.View>
     </TouchableOpacity>

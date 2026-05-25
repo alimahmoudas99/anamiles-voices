@@ -1,6 +1,7 @@
-import { Animal } from '@/types/animal';
+import { Animal } from '@/src/types/animal';
 import React, { useRef } from 'react';
 import { Animated, Dimensions, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { useLanguage } from '@/src/core/contexts/LanguageContext';
 
 const { height } = Dimensions.get('window');
 
@@ -10,6 +11,7 @@ interface PianoKeyProps {
 }
 
 export const PianoKey: React.FC<PianoKeyProps> = ({ animal, onPress }) => {
+  const { locale } = useLanguage();
   const scaleAnim = useRef(new Animated.Value(1)).current;
   const glowAnim = useRef(new Animated.Value(0)).current;
 
@@ -30,6 +32,8 @@ export const PianoKey: React.FC<PianoKeyProps> = ({ animal, onPress }) => {
 
   const shadowOpacity = glowAnim.interpolate({ inputRange: [0, 1], outputRange: [0.25, 0.7] });
 
+  const animalName = locale === 'ar' ? animal.nameAr : animal.nameEn;
+
   return (
     <TouchableOpacity
       activeOpacity={1}
@@ -49,7 +53,7 @@ export const PianoKey: React.FC<PianoKeyProps> = ({ animal, onPress }) => {
         ]}
       >
         <Text style={styles.keyEmoji}>{animal.emoji}</Text>
-        <Text style={styles.keyName}>{animal.nameAr}</Text>
+        <Text style={styles.keyName}>{animalName}</Text>
         <View style={[styles.keyStripe, { backgroundColor: animal.lightColor }]} />
       </Animated.View>
     </TouchableOpacity>

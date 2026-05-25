@@ -1,21 +1,33 @@
-import { ChoiceCard, ChoiceState } from '@/components/animal/choice-card';
-import { ANIMALS } from '@/constants/animals';
-import { Animal } from '@/types/animal';
+import { ChoiceCard, ChoiceState } from '@/src/features/guess-animal/components/choice-card';
+import { ANIMALS } from '@/src/core/constants/animals';
+import { Animal } from '@/src/types/animal';
 import React, { useCallback, useEffect, useState } from 'react';
 import { Animated, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { useLanguage } from '@/src/core/contexts/LanguageContext';
+import { useFocusEffect } from 'expo-router';
 
 interface Props {
   playAnimalSound: (animal: Animal) => Promise<void>;
   stopSound: () => Promise<void>;
 }
 
-export const GuessScreen: React.FC<Props> = ({ playAnimalSound }) => {
+export const GuessScreen: React.FC<Props> = ({ playAnimalSound, stopSound }) => {
+  const { t, isRTL } = useLanguage();
   const [correctAnimal, setCorrectAnimal] = useState<Animal | null>(null);
   const [choices, setChoices] = useState<Animal[]>([]);
   const [feedback, setFeedback] = useState<ChoiceState>('idle');
   const [cardStates, setCardStates] = useState<Record<string, ChoiceState>>({});
   const [score, setScore] = useState(0);
   const [round, setRound] = useState(1);
+
+  // Stop sound when leaving screen
+  useFocusEffect(
+    useCallback(() => {
+      return () => {
+        stopSound();
+      };
+    }, [stopSound])
+  );
 
   const generateRound = useCallback(() => {
     const playable = ANIMALS.filter((a) => !!a.sound);
@@ -58,30 +70,30 @@ export const GuessScreen: React.FC<Props> = ({ playAnimalSound }) => {
   const feedbackBg =
     feedback === 'correct' ? '#2ECC71' : feedback === 'wrong' ? '#E74C3C' : 'transparent';
   const feedbackText =
-    feedback === 'correct' ? 'شاطر! 🥳🎉' : feedback === 'wrong' ? 'حاول تاني! 💪' : '';
+    feedback === 'correct' ? t('guessFeedbackCorrect') : feedback === 'wrong' ? t('guessFeedbackWrong') : '';
 
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.title}>🔊 مين صاحب الصوت؟</Text>
+      <View style={[styles.header, { flexDirection: isRTL ? 'row-reverse' : 'row' }]}>
+        <Text style={styles.title}>{t('guessTitle')}</Text>
         <View style={styles.scoreRow}>
-          <Text style={styles.scoreLabel}>النقاط</Text>
+          <Text style={styles.scoreLabel}>{t('guessScore')}</Text>
           <Text style={styles.scoreValue}>⭐ {score}</Text>
         </View>
       </View>
 
       <View style={styles.questionBubble}>
-        <Text style={styles.questionText}>صوت مين ده؟ 🤔</Text>
+        <Text style={styles.questionText}>{t('guessSubtitle')}</Text>
         <TouchableOpacity
           style={styles.replayBtn}
           onPress={() => correctAnimal && playAnimalSound(correctAnimal)}
           activeOpacity={0.8}
         >
-          <Text style={styles.replayText}>🔁 العب الصوت تاني</Text>
+          <Text style={styles.replayText}>{t('guessReplay')}</Text>
         </TouchableOpacity>
       </View>
 
-      <View style={styles.choicesGrid}>
+      <View style={[styles.choicesGrid, { flexDirection: isRTL ? 'row-reverse' : 'row' }]}>
         {choices.map((animal) => (
           <ChoiceCard
             key={animal.id}
@@ -98,7 +110,7 @@ export const GuessScreen: React.FC<Props> = ({ playAnimalSound }) => {
         </Animated.View>
       )}
 
-      <Text style={styles.roundText}>جولة رقم {round}</Text>
+      <Text style={styles.roundText}>{t('roundPrefix')} {round}</Text>
     </View>
   );
 };
@@ -110,13 +122,12 @@ const styles = StyleSheet.create({
     paddingTop: Platform.OS === 'android' ? 20 : 10,
   },
   header: {
-    flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     marginBottom: 16,
   },
   title: {
-    fontSize: 24,
+    fontSize: 22,
     fontWeight: '900',
     color: '#FFFFFF',
     textShadowColor: 'rgba(0,0,0,0.3)',
@@ -171,7 +182,6 @@ const styles = StyleSheet.create({
     fontSize: 15,
   },
   choicesGrid: {
-    flexDirection: 'row',
     justifyContent: 'space-around',
     flexWrap: 'wrap',
     gap: 14,

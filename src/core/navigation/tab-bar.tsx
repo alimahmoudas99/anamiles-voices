@@ -1,4 +1,4 @@
-import { TabKey } from '@/types/animal';
+import { TabKey } from '@/src/types/animal';
 import React from 'react';
 import { Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
